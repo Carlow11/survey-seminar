@@ -1,0 +1,26 @@
+{% extends "global/GlobalWelcome.html" %}
+{% load otree static %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<input id="device_type" type="hidden" name="device_type" />
+<input id="operating_system" type="hidden" name="operating_system" />
+<input id="screen_height" type="hidden" name="screen_height" />
+<input id="screen_width" type="hidden" name="screen_width" />
+
+<br>
+<h2> Homework_2</h2>
+<hr>
+    <p>
+        Demo_Survey
+    </p>
+
+<button class="otree-btn-next btn btn-outline-success next-button otree-next-button">
+    Next
+</button>
+
+{% endblock %}

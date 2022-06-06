@@ -1,0 +1,107 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+
+{% block title %}
+{% endblock %}
+
+{% block scripts %}
+<script>
+    //Get variables needed for our popout
+    var citizenYes = document.getElementById('citizenYes');
+    var divYes = document.getElementById('divYes');
+    var citizenNo = document.getElementById('citizenNo');
+    var divNo = document.getElementById('divNo');
+
+    // POPOUT: we are going to create a popout function that displays text only if some value is given in another question
+    function popout() {
+        console.log('searching for the elements')
+        //the conditions and the implementation of showing the text
+        if (citizenYes.checked == true) {
+            console.log('yes');
+            divNo.style.display = "none";
+            divYes.style.display = "block";
+        }
+        if (citizenNo.checked == true) {
+            console.log('no');
+            divYes.style.display = "none";
+            divNo.style.display = "block";
+        }
+    }
+</script>
+{% endblock %}
+
+
+{% block content %}
+<input id="time_popout" type="hidden" name="time_popout" />
+<br>
+<h2> Homework_1</h2>
+<hr>
+<b>Please take your time to answer</b>
+
+
+<br>
+Please enter your age below
+{{ formfield "age_question"}}
+<br>
+
+{{ formfield_errors 'age_question' }}
+
+<br>
+<p>Which gender do you identify with?</p>
+<input type="radio" name="gender" value="1" /> Male
+<br>
+<input type="radio" name="gender" value="2" /> Female
+<br>
+<input type="radio" name="gender" value="3" /> Divers
+<br>
+<input type="radio" name="gender" value="4" /> Prefer not to say
+<br>
+{{ formfield_errors 'gender' }}
+<br>
+<p><b>If sunday were a federal election, which party would you vote for?</b></p>
+<input type="radio" name="party" value="1" /> SPD
+<br>
+<input type="radio" name="party" value="2" /> CDU
+<br>
+<input type="radio" name="party" value="3" /> Gruene
+<br>
+<input type="radio" name="party" value="4" /> FDP
+<br>
+<input type="radio" name="party" value="5" /> AfD
+<br>
+<input type="radio" name="party" value="5" /> Other
+<br>
+<input type="radio" name="party" value="6" /> NA
+<br>
+{{ formfield_errors 'party' }}
+<br>
+Who is your favorite politician?
+{{ formfield "favorite_pol"}}
+<br>
+
+<div>
+    <p><b> Are you a german citizen?</b></p>
+    <div><input id="citizenYes" type="radio" name="popout_question" value = "1" onclick="popout()" /> Yes</div>
+    <div><input id="citizenNo" type="radio" name="popout_question" value="2" onclick="popout()" /> No</div>
+    <br>    
+</div>
+
+<div id="divYes" style="display: none">
+    <p>In which city were you born?</p>
+    <input type="text" name="popout_yes" />
+    <br>
+</div>
+
+<div id="divNo" style="display: none">
+    <p>What nationality do you belong to?</p>
+    <input type="text" name="popout_no" />
+    <br>
+</div>
+
+
+<button class="otree-btn-next btn btn-primary next-button otree-next-button">
+    Next
+</button>
+
+{% endblock %}
